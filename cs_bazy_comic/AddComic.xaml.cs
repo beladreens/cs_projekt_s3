@@ -16,13 +16,22 @@ using System.Windows.Shapes;
 namespace cs_bazy_comic
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AddComic.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddComic : Window
     {
-        public MainWindow()
+        webtoon Komiks;
+        db_WebtoonsEntities DB;
+        public AddComic(webtoon Komiks, db_WebtoonsEntities DB)
         {
+            this.Komiks = Komiks;
+            this.DB = DB;
             InitializeComponent();
+            AddNewComic();
+        }
+        private void AddNewComic()
+        {
+
         }
     }
 }
