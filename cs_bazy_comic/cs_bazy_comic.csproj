@@ -73,6 +73,9 @@
     <Compile Include="for_publishers.cs">
       <DependentUpon>Model_Webtoons.tt</DependentUpon>
     </Compile>
+    <Compile Include="AddComic.xaml.cs">
+      <DependentUpon>AddComic.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model_Webtoons.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -84,6 +87,10 @@
     <Compile Include="webtoon.cs">
       <DependentUpon>Model_Webtoons.tt</DependentUpon>
     </Compile>
+    <Page Include="AddComic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

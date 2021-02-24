@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cs_bazy_comic"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="466.667">
     <Grid>
-        
+        <Label Content="Komiksy - Lista" HorizontalAlignment="Center" Height="30" Margin="97,10,22.333,0" VerticalAlignment="Top" Width="190"/>
+        <ListBox HorizontalAlignment="Left" Height="308" Margin="95,40,0,0" VerticalAlignment="Top" Width="267"/>
+        <Button Content="Dodaj pozycję" HorizontalAlignment="Left" Height="44" Margin="145,363,0,0" VerticalAlignment="Top" Width="167"/>
+
     </Grid>
 </Window>
