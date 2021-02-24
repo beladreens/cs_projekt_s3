@@ -1,6 +1,6 @@
-﻿CREATE DATABASE db_Webtoons 
+﻿/*CREATE DATABASE db_Webtoons 
 
-GO 
+GO*/
 
  
 

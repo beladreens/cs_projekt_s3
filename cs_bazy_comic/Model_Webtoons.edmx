@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_Webtoons_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'db_Webtoons.dbo.animated_series' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="animated_series">
+          <Property Name="anime_title" Type="nvarchar" MaxLength="30" />
+          <Property Name="broadcast" Type="date" />
+          <Property Name="n_ep" Type="int" />
+          <Property Name="series_id" Type="int" />
+        </EntityType>-->
+        <EntityType Name="authors">
+          <Key>
+            <PropertyRef Name="author_id" />
+          </Key>
+          <Property Name="author_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="char" MaxLength="15" />
+          <Property Name="surname" Type="char" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'db_Webtoons.dbo.characters' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="characters">
+          <Property Name="name" Type="nvarchar" MaxLength="15" />
+          <Property Name="surname" Type="nvarchar" MaxLength="15" />
+          <Property Name="character_type" Type="char" MaxLength="10" />
+          <Property Name="series_id" Type="int" />
+        </EntityType>-->
+        <EntityType Name="for_publishers">
+          <Key>
+            <PropertyRef Name="f_publisher_id" />
+          </Key>
+          <Property Name="f_publisher_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="15" />
+          <Property Name="language" Type="nchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="orig_publishers">
+          <Key>
+            <PropertyRef Name="o_publisher_id" />
+          </Key>
+          <Property Name="o_publisher_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="15" />
+          <Property Name="language" Type="nchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="webtoons">
+          <Key>
+            <PropertyRef Name="series_id" />
+          </Key>
+          <Property Name="series_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="char" MaxLength="10" />
+          <Property Name="main_category" Type="char" MaxLength="11" />
+          <Property Name="date_of_publication" Type="date" />
+          <Property Name="author_id" Type="int" />
+          <Property Name="o_publisher_id" Type="int" />
+          <Property Name="f_publisher_id" Type="int" />
+        </EntityType>
+        <Association Name="ref_auth_web">
+          <End Role="authors" Type="Self.authors" Multiplicity="0..1" />
+          <End Role="webtoons" Type="Self.webtoons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="authors">
+              <PropertyRef Name="author_id" />
+            </Principal>
+            <Dependent Role="webtoons">
+              <PropertyRef Name="author_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ref_fpub_web">
+          <End Role="for_publishers" Type="Self.for_publishers" Multiplicity="0..1" />
+          <End Role="webtoons" Type="Self.webtoons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="for_publishers">
+              <PropertyRef Name="f_publisher_id" />
+            </Principal>
+            <Dependent Role="webtoons">
+              <PropertyRef Name="f_publisher_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ref_opub_web">
+          <End Role="orig_publishers" Type="Self.orig_publishers" Multiplicity="0..1" />
+          <End Role="webtoons" Type="Self.webtoons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orig_publishers">
+              <PropertyRef Name="o_publisher_id" />
+            </Principal>
+            <Dependent Role="webtoons">
+              <PropertyRef Name="o_publisher_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'db_Webtoons.dbo.animated_series' is referenced by a relationship, but cannot be found.
+        <Association Name="ref_web__anime" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'db_Webtoons.dbo.characters' is referenced by a relationship, but cannot be found.
+        <Association Name="ref_web__char" />-->
+        <EntityContainer Name="db_Webtoons_ModelStoreContainer">
+          <EntitySet Name="authors" EntityType="Self.authors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="for_publishers" EntityType="Self.for_publishers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orig_publishers" EntityType="Self.orig_publishers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webtoons" EntityType="Self.webtoons" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="ref_auth_web" Association="Self.ref_auth_web">
+            <End Role="authors" EntitySet="authors" />
+            <End Role="webtoons" EntitySet="webtoons" />
+          </AssociationSet>
+          <AssociationSet Name="ref_fpub_web" Association="Self.ref_fpub_web">
+            <End Role="for_publishers" EntitySet="for_publishers" />
+            <End Role="webtoons" EntitySet="webtoons" />
+          </AssociationSet>
+          <AssociationSet Name="ref_opub_web" Association="Self.ref_opub_web">
+            <End Role="orig_publishers" EntitySet="orig_publishers" />
+            <End Role="webtoons" EntitySet="webtoons" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_Webtoons_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="author">
+          <Key>
+            <PropertyRef Name="author_id" />
+          </Key>
+          <Property Name="author_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="surname" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="webtoons" Relationship="Self.ref_auth_web" FromRole="authors" ToRole="webtoons" />
+        </EntityType>
+        <EntityType Name="for_publishers">
+          <Key>
+            <PropertyRef Name="f_publisher_id" />
+          </Key>
+          <Property Name="f_publisher_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="language" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="webtoons" Relationship="Self.ref_fpub_web" FromRole="for_publishers" ToRole="webtoons" />
+        </EntityType>
+        <EntityType Name="orig_publishers">
+          <Key>
+            <PropertyRef Name="o_publisher_id" />
+          </Key>
+          <Property Name="o_publisher_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="language" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="webtoons" Relationship="Self.ref_opub_web" FromRole="orig_publishers" ToRole="webtoons" />
+        </EntityType>
+        <EntityType Name="webtoon">
+          <Key>
+            <PropertyRef Name="series_id" />
+          </Key>
+          <Property Name="series_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="main_category" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="date_of_publication" Type="DateTime" Precision="0" />
+          <Property Name="author_id" Type="Int32" />
+          <Property Name="o_publisher_id" Type="Int32" />
+          <Property Name="f_publisher_id" Type="Int32" />
+          <NavigationProperty Name="author" Relationship="Self.ref_auth_web" FromRole="webtoons" ToRole="authors" />
+          <NavigationProperty Name="for_publishers" Relationship="Self.ref_fpub_web" FromRole="webtoons" ToRole="for_publishers" />
+          <NavigationProperty Name="orig_publishers" Relationship="Self.ref_opub_web" FromRole="webtoons" ToRole="orig_publishers" />
+        </EntityType>
+        <Association Name="ref_auth_web">
+          <End Role="authors" Type="Self.author" Multiplicity="0..1" />
+          <End Role="webtoons" Type="Self.webtoon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="authors">
+              <PropertyRef Name="author_id" />
+            </Principal>
+            <Dependent Role="webtoons">
+              <PropertyRef Name="author_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ref_fpub_web">
+          <End Role="for_publishers" Type="Self.for_publishers" Multiplicity="0..1" />
+          <End Role="webtoons" Type="Self.webtoon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="for_publishers">
+              <PropertyRef Name="f_publisher_id" />
+            </Principal>
+            <Dependent Role="webtoons">
+              <PropertyRef Name="f_publisher_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ref_opub_web">
+          <End Role="orig_publishers" Type="Self.orig_publishers" Multiplicity="0..1" />
+          <End Role="webtoons" Type="Self.webtoon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orig_publishers">
+              <PropertyRef Name="o_publisher_id" />
+            </Principal>
+            <Dependent Role="webtoons">
+              <PropertyRef Name="o_publisher_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_WebtoonsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="authors" EntityType="Self.author" />
+          <EntitySet Name="for_publishers" EntityType="Self.for_publishers" />
+          <EntitySet Name="orig_publishers" EntityType="Self.orig_publishers" />
+          <EntitySet Name="webtoons" EntityType="Self.webtoon" />
+          <AssociationSet Name="ref_auth_web" Association="Self.ref_auth_web">
+            <End Role="authors" EntitySet="authors" />
+            <End Role="webtoons" EntitySet="webtoons" />
+          </AssociationSet>
+          <AssociationSet Name="ref_fpub_web" Association="Self.ref_fpub_web">
+            <End Role="for_publishers" EntitySet="for_publishers" />
+            <End Role="webtoons" EntitySet="webtoons" />
+          </AssociationSet>
+          <AssociationSet Name="ref_opub_web" Association="Self.ref_opub_web">
+            <End Role="orig_publishers" EntitySet="orig_publishers" />
+            <End Role="webtoons" EntitySet="webtoons" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_Webtoons_ModelStoreContainer" CdmEntityContainer="db_WebtoonsEntities">
+          <EntitySetMapping Name="authors">
+            <EntityTypeMapping TypeName="db_Webtoons_Model.author">
+              <MappingFragment StoreEntitySet="authors">
+                <ScalarProperty Name="author_id" ColumnName="author_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="for_publishers">
+            <EntityTypeMapping TypeName="db_Webtoons_Model.for_publishers">
+              <MappingFragment StoreEntitySet="for_publishers">
+                <ScalarProperty Name="f_publisher_id" ColumnName="f_publisher_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="language" ColumnName="language" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orig_publishers">
+            <EntityTypeMapping TypeName="db_Webtoons_Model.orig_publishers">
+              <MappingFragment StoreEntitySet="orig_publishers">
+                <ScalarProperty Name="o_publisher_id" ColumnName="o_publisher_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="language" ColumnName="language" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webtoons">
+            <EntityTypeMapping TypeName="db_Webtoons_Model.webtoon">
+              <MappingFragment StoreEntitySet="webtoons">
+                <ScalarProperty Name="series_id" ColumnName="series_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="main_category" ColumnName="main_category" />
+                <ScalarProperty Name="date_of_publication" ColumnName="date_of_publication" />
+                <ScalarProperty Name="author_id" ColumnName="author_id" />
+                <ScalarProperty Name="o_publisher_id" ColumnName="o_publisher_id" />
+                <ScalarProperty Name="f_publisher_id" ColumnName="f_publisher_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

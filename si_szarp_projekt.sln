@@ -5,6 +5,13 @@ VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "si_szarp_baza", "si_szarp_baza\si_szarp_baza.sqlproj", "{49745D6E-32C7-4731-B484-6E1A990999C9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CE1A26FC-D82E-4BF7-A448-CCA694466DC7}"
+	ProjectSection(SolutionItems) = preProject
+		SqlQuery_1.sql = SqlQuery_1.sql
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cs_bazy_comic", "cs_bazy_comic\cs_bazy_comic.csproj", "{57FE98CB-5F90-497D-9CDD-1BE02277488A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +24,10 @@ Global
 		{49745D6E-32C7-4731-B484-6E1A990999C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49745D6E-32C7-4731-B484-6E1A990999C9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{49745D6E-32C7-4731-B484-6E1A990999C9}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{57FE98CB-5F90-497D-9CDD-1BE02277488A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57FE98CB-5F90-497D-9CDD-1BE02277488A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57FE98CB-5F90-497D-9CDD-1BE02277488A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57FE98CB-5F90-497D-9CDD-1BE02277488A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
