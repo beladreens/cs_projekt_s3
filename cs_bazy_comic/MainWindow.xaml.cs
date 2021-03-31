@@ -20,9 +20,25 @@ namespace cs_bazy_comic
     /// </summary>
     public partial class MainWindow : Window
     {
+        webtoon Komiks;
+        db_WebtoonsEntities DB;
         public MainWindow()
         {
-            InitializeComponent();
+            AktualizujListe();
+        }
+        private void PrzyciskDodajPozycje_Click(object sender, RoutedEventArgs e)
+        {
+            AddComic oknoKomiks = new AddComic(Komiks, DB);
+            oknoKomiks.ShowDialog();
+        }
+        private void AktualizujListe()
+        {
+            ListBoxItem itm = new ListBoxItem
+            {
+                Content = DB.webtoons
+            };
+
+            Lista_Tytulow.Items.Add(itm);
         }
     }
 }
