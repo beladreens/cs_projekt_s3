@@ -16,7 +16,8 @@ using System.Windows.Shapes;
 namespace cs_bazy_comic
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// wyświetlanie listy istniejących pozycji
+    /// dodawanie nowych pozycji poprzez otwarcie nowego okna (AddComic)
     /// </summary>
     public partial class MainWindow : Window
     {
