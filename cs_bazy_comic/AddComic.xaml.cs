@@ -49,7 +49,6 @@ namespace cs_bazy_comic
                 NowyKomiks.date_of_publication = DateTime.Parse(dateString, cultureInfo);
 
                 DB.webtoons.Add(NowyKomiks);
-                DB.webtoons.Add(NowyKomiks);
 
                 DB.SaveChanges();
                 this.Close();
