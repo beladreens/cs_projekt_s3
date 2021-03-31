@@ -17,7 +17,8 @@ using System.Globalization;
 namespace cs_bazy_comic
 {
     /// <summary>
-    /// Interaction logic for AddComic.xaml
+    /// Dodawanie nowych pozycji do bazy danych
+    /// Tytuł, autor, wydawcy, data dodania, status projektu, gatunek(kategoria)
     /// </summary>
     public partial class AddComic : Window
     {
