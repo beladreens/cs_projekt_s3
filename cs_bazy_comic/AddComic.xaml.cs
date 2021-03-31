@@ -56,7 +56,7 @@ namespace cs_bazy_comic
             }
             catch 
             {
-                MessageBox.Show("Błędne dane");
+                MessageBox.Show("Błędne dane, wpisz poprawne");
             }
         }
         
